@@ -1,0 +1,52 @@
+.see-all-stock-container {
+    padding: 20px;
+  }
+  
+  .search-bar-container {
+    margin-bottom: 20px;
+  }
+  
+  .search-bar {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .stock-list {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+  }
+  
+  .stock-item {
+    padding: 10px;
+    cursor: pointer;
+    list-style-type: none;
+  }
+  
+  .stock-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .selected {
+    background-color: #e0e0e0;
+  }
+  
+  .stock-details-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .stock-details-table th,
+  .stock-details-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+  
+  .stock-details {
+    margin-top: 20px;
+  }
+  

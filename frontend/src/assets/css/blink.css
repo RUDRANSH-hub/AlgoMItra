@@ -1,0 +1,23 @@
+/* Add this to your CSS file (style.css) */
+.blink {
+    animation: blink-animation 0.5s ease-in-out;
+  }
+  
+  @keyframes blink-animation {
+    0% {
+      opacity: 0.1;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.1;
+    }
+  }
+  
+  .time-wrapper {
+    display: inline-block;
+    margin-left: 10px;
+    color: lightgreen; /* Light green color for the time */
+  }
+  
