@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../assets/css/blink.css';
-// Helper function to check if the current time is within market hours (9:15 AM - 3:29 PM)
+
+// Helper function to check if the market is open (9:15 AM - 3:29 PM)
 const isMarketOpen = () => {
   const now = new Date();
   const start = new Date();
   const end = new Date();
 
-  // Set market open and close times
   start.setHours(9, 15, 0);
   end.setHours(15, 29, 0);
 
   return now >= start && now <= end;
 };
 
-// Helper function to shuffle an array
+// Shuffle an array
 const shuffleArray = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -27,8 +27,9 @@ const shuffleArray = (array) => {
 const Market = () => {
   const [stocks, setStocks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [fetchTime, setFetchTime] = useState(''); // State to store the time of data fetch
-  const [blinkClass, setBlinkClass] = useState(''); // Class to trigger blinking animation
+  const [fetchTime, setFetchTime] = useState('');
+  const [blinkClass, setBlinkClass] = useState('');
+  const [marketClosed, setMarketClosed] = useState(false);
 
   useEffect(() => {
     const fetchStocks = async () => {
@@ -39,7 +40,6 @@ const Market = () => {
       setBlinkClass('blink');
       setTimeout(() => setBlinkClass(''), 1000); // Remove the blink class after 1 second
 
-      // Check session storage for previously loaded stocks
       const storedStocks = sessionStorage.getItem('selectedStocks');
       if (storedStocks) {
         setStocks(JSON.parse(storedStocks));
@@ -53,7 +53,6 @@ const Market = () => {
 
         if (data && data.stocks) {
           const stocksArray = Array.isArray(data.stocks) ? data.stocks : Object.values(data.stocks);
-
           const shuffledStocks = shuffleArray(stocksArray).slice(0, 5); // Select 5 random stocks
           setStocks(shuffledStocks);
           sessionStorage.setItem('selectedStocks', JSON.stringify(shuffledStocks)); // Cache selected stocks
@@ -70,11 +69,12 @@ const Market = () => {
     fetchStocks();
 
     if (isMarketOpen()) {
-      const intervalId = setInterval(() => {
-        fetchStocks(); // Fetch stock prices every minute and update the time
-      }, 5000); // 5 seconds
+      setMarketClosed(false);
+      const intervalId = setInterval(fetchStocks, 5000); // Refresh every 5 seconds
 
-      return () => clearInterval(intervalId);
+      return () => clearInterval(intervalId); // Clear interval on component unmount
+    } else {
+      setMarketClosed(true); // Indicate that the market is closed
     }
   }, []);
 
@@ -83,10 +83,10 @@ const Market = () => {
       <div className="container">
         <div className="title-wrapper">
           <h2 className="h2 section-title">
-            Market Update
+            Market Update {marketClosed && "(Closed)"}
             <span className={`time-wrapper ${blinkClass}`}>{fetchTime}</span> {/* Time with blinking effect */}
           </h2>
-          <Link to="/SeeAllStock" className="btn-link">See All Stocks</Link> {/* Link to all stocks page */}
+          <Link to="/SeeAllStock" className="btn-link">See All Stocks</Link>
         </div>
 
         {isLoading ? (
@@ -128,7 +128,6 @@ const StockRow = ({ stock, index }) => {
   });
 
   const [loading, setLoading] = useState(true);
-  const [previousStockData, setPreviousStockData] = useState(null); // Keep previous data to show while updating
 
   const fetchStockDetails = async () => {
     try {
@@ -136,7 +135,6 @@ const StockRow = ({ stock, index }) => {
       const data = await response.json();
 
       if (data && data.stat === 'Ok') {
-        setPreviousStockData(stockData); // Save current data before updating
         setStockData({
           intervalOpen: data.into || '-',
           intervalClose: data.intc || '-',
@@ -157,9 +155,7 @@ const StockRow = ({ stock, index }) => {
     fetchStockDetails();
 
     if (isMarketOpen()) {
-      const intervalId = setInterval(() => {
-        fetchStockDetails(); // Update every minute
-      }, 60000); // 60 seconds
+      const intervalId = setInterval(fetchStockDetails, 60000); // Update every minute
 
       return () => clearInterval(intervalId); // Cleanup the interval on unmount
     }
@@ -171,16 +167,16 @@ const StockRow = ({ stock, index }) => {
       <td className="table-data">{stock.name}</td>
       <td className="table-data">{stock.symbol}</td>
       <td className="table-data">
-        {loading ? (previousStockData ? `₹${previousStockData.intervalOpen}` : <LoadingDots />) : `₹${stockData.intervalOpen}`}
+        {loading ? <LoadingDots /> : `₹${stockData.intervalOpen}`}
       </td>
       <td className="table-data">
-        {loading ? (previousStockData ? `₹${previousStockData.intervalClose}` : <LoadingDots />) : `₹${stockData.intervalClose}`}
+        {loading ? <LoadingDots /> : `₹${stockData.intervalClose}`}
       </td>
       <td className="table-data">
-        {loading ? (previousStockData ? `₹${previousStockData.intervalHigh}` : <LoadingDots />) : `₹${stockData.intervalHigh}`}
+        {loading ? <LoadingDots /> : `₹${stockData.intervalHigh}`}
       </td>
       <td className="table-data">
-        {loading ? (previousStockData ? `₹${previousStockData.intervalLow}` : <LoadingDots />) : `₹${stockData.intervalLow}`}
+        {loading ? <LoadingDots /> : `₹${stockData.intervalLow}`}
       </td>
     </tr>
   );

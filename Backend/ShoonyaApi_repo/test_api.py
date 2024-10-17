@@ -11,7 +11,7 @@ otp = pyotp.TOTP(token).now()
 api = ShoonyaApiPy()
 
 user = "FA120066"
-pwd = "Qwerty@4321"
+pwd = "Qwerty@3456"
 factor2 = otp
 vc = "FA120066_U"
 app_key = "69502fab0cb579fcd1432137085347e8"

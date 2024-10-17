@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from algomitra_app.views import RegisterAPIView, LoginAPIView,UserProfileAPIView,FetchStockPriceAPIView,FetchStockNamesAPIView
+from algomitra_app.views import RegisterAPIView, LoginAPIView,UserProfileAPIView,FetchStockPriceAPIView,FetchStockNamesAPIView,FetchHistoricalStockPriceAPIView,FetchStockDayPriceAPIView,CandleCheckAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -11,7 +11,9 @@ urlpatterns = [
     # path('zerodha/login/', ZerodhaLoginAPIView.as_view(), name='zerodha-login'),
     # path('zerodha/callback/', ZerodhaCallbackAPIView.as_view(), name='zerodha-callback'),
     path('api/stocks/<str:symbol>/', FetchStockPriceAPIView.as_view(), name='fetch_stock_price'),
-    # path('api/stock/<str:token>/', FetchStockPriceAPIView.as_view(), name='fetch_stock_price'),
+    path('api/historical/<str:symbol>/', FetchHistoricalStockPriceAPIView.as_view(), name='fetch_historical_stock_price'),
+    path('api/dayStockData/<str:symbol>/', FetchStockDayPriceAPIView.as_view(), name='fetch_day_Stock_data'),
+    path('api/candle-check/', CandleCheckAPIView.as_view(), name='candle_check'),
 
 
 

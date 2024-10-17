@@ -18,13 +18,13 @@ const Footer = () => {
           <div className="footer-brand">
             <a href="#" className="logo">
               <img src={logo} width="50" height="50" alt="Cryptex logo" />
-              Cryptex
+              AlgoMitra
             </a>
 
             <h2 className="footer-title">Let's talk! 🤙</h2>
             <a href="tel:+123456789101" className="footer-contact-link">+12 345 678 9101</a>
-            <a href="mailto:hello.cryptex@gmail.com" className="footer-contact-link">hello.cryptex@gmail.com</a>
-            <address className="footer-contact-link">Cecilia Chapman 711-2880 Nulla St. Mankato Mississippi 96522</address>
+            <a href="mailto:hello.cryptex@gmail.com" className="footer-contact-link">algomitra1@gmail.com</a>
+            <address className="footer-contact-link">Noida</address>
           </div>
 
           {Object.keys(footerLinks).map((section) => (
@@ -45,7 +45,7 @@ const Footer = () => {
       <div className="footer-bottom">
         <div className="container">
           <p className="copyright">
-            &copy; 2022 Cryptex All Rights Reserved by <a href="#" className="copyright-link">codewithsadee</a>
+            &copy; 2022 AlgoMitra All Rights Reserved by <a href="#" className="copyright-link">codewithsadee</a>
           </p>
 
           <ul className="social-list">

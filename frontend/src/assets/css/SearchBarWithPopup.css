@@ -1,0 +1,121 @@
+/* Container for the search bar */
+.search-bar-container {
+    margin-top: 20px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* Small and styled search input - oval, dark, and transparent */
+.search-input {
+    width: 200px;  /* Make the search input smaller */
+    padding: 8px 16px;
+    font-size: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Semi-transparent white border */
+    border-radius: 50px; /* Oval shape */
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark and transparent background */
+    color: #fff; /* White text */
+    transition: border-color 0.3s, width 0.3s, background-color 0.3s; /* Smooth transition */
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+/* When focused, the search input will expand */
+.search-input:focus {
+    width: 400px;  /* Expand the input on focus */
+    border-color: #4caf50; /* Green border on focus */
+    background-color: rgba(0, 0, 0, 0.8); /* Less transparency on focus */
+    cursor: text;
+}
+
+/* Popup modal with fade-in animation and dark theme */
+.popup-modal {
+    position: absolute;
+    top: 100%; /* Position below the search bar */
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 100%;
+    max-width: 600px;
+    background-color: rgba(0, 0, 0, 0.9); /* Dark, transparent background */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Light transparent border */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.6); /* Softer shadow */
+    z-index: 1000;
+    opacity: 0;  /* Start hidden */
+    animation: fadeIn 0.3s forwards;  /* Animation on open */
+    color: #fff; /* White text for dark background */
+}
+
+/* Popup content */
+.popup-content {
+    padding: 20px;
+}
+
+/* Popup header */
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.popup-header span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.close-button {
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+}
+
+/* Popup body - List of stocks */
+.popup-body {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.stock-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.stock-item {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle divider between stocks */
+}
+
+.stock-item:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Light hover effect */
+}
+
+.stock-symbol {
+    font-weight: bold;
+}
+
+.stock-name {
+    font-style: italic;
+}
+
+/* Animation for popup fade-in */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -10%);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}

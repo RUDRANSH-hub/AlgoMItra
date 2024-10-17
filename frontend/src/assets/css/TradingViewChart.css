@@ -1,0 +1,199 @@
+/* TradingViewChart.css */
+
+/* Container to hold both the chart and the log table */
+.trading-view-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  box-sizing: border-box;
+  /* Removed fixed height to allow content to adjust dynamically */
+}
+
+/* Section for the chart */
+.chart-section {
+  flex: 3;
+  margin-right: 20px;
+  min-width: 0; /* Prevents overflow in flex containers */
+}
+
+/* Section for the log table */
+.log-section {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+  backdrop-filter: blur(10px); /* Adds a blur effect behind the transparent background */
+  padding: 10px;
+  border-radius: 8px;
+  overflow-y: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-height: calc(100vh - 40px); /* Adjusts for padding, keeps within viewport */
+  box-sizing: border-box;
+}
+
+/* Responsive container for the chart */
+.chart-container {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  box-sizing: border-box;
+  background-color: #1e1e1e; /* Dark background for the chart */
+  border-radius: 8px;
+  border: 1px solid #555; /* Darker border */
+  overflow: hidden; /* Ensures content doesn't overflow */
+}
+
+/* Loader container style */
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh; /* Loader takes the same height as the chart */
+  width: 100%;
+  background-color: #1e1e1e; /* Dark background for the loader */
+}
+
+/* Loader style */
+.loader {
+  border: 6px solid #000000;
+  border-radius: 50%;
+  border-top: 6px solid #4caf50;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Stock info display */
+.stock-info {
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.stock-info h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.stock-info h3 {
+  font-size: 18px;
+  margin: 0;
+  color: #bbb;
+}
+
+/* Styles for the interval selector container */
+.interval-selector {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+/* Styles for the label */
+.interval-selector label {
+  margin-right: 10px;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+/* Styles for the select dropdown */
+.interval-selector select {
+  padding: 5px 10px;
+  font-size: 16px;
+  background-color: #2e2e2e;
+  color: #ffffff;
+  border: 1px solid #555;
+  border-radius: 4px;
+  outline: none;
+  appearance: none; /* Removes default arrow in some browsers */
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23ffffff"><polygon points="0,0 16,0 8,8"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px;
+}
+
+/* Styles for hover and focus states */
+.interval-selector select:hover {
+  border-color: #777;
+}
+
+.interval-selector select:focus {
+  border-color: #999;
+}
+
+/* LogTable styles */
+.log-table-container {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.log-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.log-table th, .log-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.log-table th {
+  background-color: rgba(70, 55, 55, 0.8); /* Semi-transparent header background */
+  font-weight: bold;
+  color: #fff; /* White text color for better visibility */
+}
+
+.log-table td {
+  background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent row background */
+  color: #fff; /* White text color for better visibility */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .trading-view-container {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .chart-section, .log-section {
+    flex: none;
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .chart-container {
+    height: 400px; /* Reduced height for smaller screens */
+  }
+
+  .log-section {
+    max-height: none;
+    height: auto;
+  }
+
+  /* Adjust font sizes for better readability */
+  .stock-info h1 {
+    font-size: 20px;
+  }
+
+  .stock-info h3 {
+    font-size: 16px;
+  }
+
+  .interval-selector label,
+  .interval-selector select {
+    font-size: 14px;
+  }
+
+  .log-table th, .log-table td {
+    padding: 6px;
+    font-size: 14px;
+  }
+}

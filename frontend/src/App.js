@@ -10,6 +10,7 @@ const Home = lazy(() => import('./components/Home'));
 const MarketAnalysis = lazy(() => import('./components/MarketAnalysis'));
 const About = lazy(() => import('./components/About'));
 const SeeAllStock = lazy(() => import('./components/SeeAllStock'));
+const News = lazy(() => import('./components/News'));
 const NotFound = lazy(() => import('./components/NotFound'));
 
 const App = () => {
@@ -33,7 +34,7 @@ const App = () => {
           {/* Route for Homepage */}
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
-
+          <Route path="/news" element={<News />} />
           {/* Route for Market Analysis */}
           <Route path="/market_analysis" element={<MarketAnalysis />} />
 

@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    # 'daphne',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -52,11 +53,15 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'dj_rest_auth',
 
-    # Algomitra app
-    'algomitra_app',
+    
 
     # CORS (optional)
     'corsheaders',
+    'channels',
+    
+    # Algomitra app
+    'algomitra_app',
+
 ]
 
 
@@ -174,10 +179,14 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # Frontend address (adjust if necessary)
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000",  # Frontend address (adjust if necessary)
+# ]
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -217,8 +226,21 @@ import http.client
 # Shoonya API credentials
 # SHOONYA_API_KEY = '69502fab0cb579fcd1432137085347e8'
 SHOONYA_USER_ID = 'FA120066'
-SHOONYA_PASSWORD = 'Qwerty@4321'
+SHOONYA_PASSWORD = 'Qwerty@3456'
 SHOONYA_API_TOKEN = 'A4CT2HP2J5QH3UKWD4X7QI77QAN7ZO64'
 SHOONYA_VENDOR_CODE = 'FA120066_U'
 SHOONYA_API_SECRET = '69502fab0cb579fcd1432137085347e8'
 SHOONYA_IMEI = 'abc1234'
+# ASGI_APPLICATION = 'algomitra.asgi.application'
+
+
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels.layers.InMemoryChannelLayer",  # For development
+#         # For production, use Redis:
+#         # "BACKEND": "channels_redis.core.RedisChannelLayer",
+#         # "CONFIG": {
+#         #     "hosts": [("127.0.0.1", 6379)],
+#         # },
+#     },
+# }

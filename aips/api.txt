@@ -1,0 +1,6 @@
+http://127.0.0.1:8000/api/register/ register api
+http://127.0.0.1:8000/api/login/    login api
+http://127.0.0.1:8000/api/user-profile/  user profile api
+http://127.0.0.1:8000/api/stocks/{symbol}  for current data of stock
+http://127.0.0.1:8000/api/stocks/   for all stocks token and symbols etc
+http://127.0.0.1:8000/api/historical/stock/{symbol} for historical data  need to pass interval from frontend

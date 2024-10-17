@@ -46,11 +46,14 @@ const Header = () => {
             <li className="navbar-item">
               <Link to="/market_analysis" className="navbar-link" data-nav-link onClick={handleLinkClick}>Market Analysis</Link> {/* Link to Market Analysis */}
             </li>
-            <li className="navbar-item">
+            {/* <li className="navbar-item">
               <Link to="/strategy" className="navbar-link" data-nav-link onClick={handleLinkClick}>Strategy</Link>
-            </li>
+            </li> */}
             <li className="navbar-item">
               <Link to="/algorithmic-lab" className="navbar-link" data-nav-link onClick={handleLinkClick}>Algorithmic Lab</Link>
+            </li>
+            <li className="navbar-item">
+              <Link to="/News" className="navbar-link" data-nav-link onClick={handleLinkClick}>News Analysis</Link>
             </li>
             <li className="navbar-item">
               <Link to="/about" className="navbar-link" data-nav-link onClick={handleLinkClick}>About</Link>
